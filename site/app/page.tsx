@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Tattoo Studio Mount Maunganui",
+  description:
+    "Discover a premium tattoo studio in Mount Maunganui for custom tattoos, fine line, blackwork, and illustrative work with consultation-led bookings.",
+};
 
 const artistProfiles = [
   {
@@ -81,7 +88,7 @@ export default function Home() {
               Consultation-first design
             </h2>
             <p className="mt-4 text-sm leading-7 text-[--color-muted]">
-              Every tattoo begins with a collaborative consultation. We shape concept, placement, scale, and style before ink touches skin.
+              Every tattoo begins with a collaborative consultation. We shape concept, placement, scale, style, and flow before ink touches skin.
             </p>
           </div>
           <div className="editorial-card rounded-[1.75rem] p-8">
@@ -90,7 +97,7 @@ export default function Home() {
               Specialist artistry
             </h2>
             <p className="mt-4 text-sm leading-7 text-[--color-muted]">
-              Our artists specialise in fine line, blackwork, ornamental, and illustrative tattoos with a premium editorial aesthetic.
+              Our tattoo artists specialise in fine line, blackwork, ornamental, and illustrative tattoos with a premium editorial aesthetic.
             </p>
           </div>
           <div className="editorial-card rounded-[1.75rem] p-8">

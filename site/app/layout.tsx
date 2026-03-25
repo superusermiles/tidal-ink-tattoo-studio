@@ -19,23 +19,25 @@ const siteUrl = "https://tidalinktattoo.co.nz";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tidal Ink Tattoo Studio | Premium Tattoo Studio in Mount Maunganui",
+    default: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
     template: "%s | Tidal Ink Tattoo Studio",
   },
   description:
-    "Premium custom tattoo studio in Mount Maunganui, New Zealand. Explore artists, view signature styles, and book a consultation with Tidal Ink Tattoo Studio.",
+    "Custom tattoo studio in Mount Maunganui offering fine line, blackwork, illustrative, and bespoke tattoo consultations for Tauranga and Bay of Plenty clients.",
   keywords: [
     "tattoo studio Mount Maunganui",
+    "custom tattoo studio Mount Maunganui",
     "tattoo artists Mount Maunganui",
     "custom tattoos Tauranga",
     "premium tattoo studio Bay of Plenty",
     "fine line tattoo Mount Maunganui",
     "blackwork tattoo Tauranga",
+    "illustrative tattoo Bay of Plenty",
   ],
   openGraph: {
-    title: "Tidal Ink Tattoo Studio",
+    title: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
     description:
-      "Refined custom tattooing in Mount Maunganui, with specialist artists, a calm studio experience, and consultation-led bookings.",
+      "Premium custom tattoo studio in Mount Maunganui for fine line, blackwork, ornamental, and illustrative tattoos with consultation-led bookings.",
     url: siteUrl,
     siteName: "Tidal Ink Tattoo Studio",
     locale: "en_NZ",
@@ -43,9 +45,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tidal Ink Tattoo Studio",
+    title: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
     description:
-      "Premium custom tattoo studio in Mount Maunganui, New Zealand.",
+      "Premium custom tattoo studio in Mount Maunganui for fine line, blackwork, ornamental, and illustrative tattoos.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -63,23 +69,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "TattooParlor",
-    name: "Tidal Ink Tattoo Studio",
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Tidal Ink Tattoo Studio',
+    description:
+      'Premium custom tattoo studio in Mount Maunganui specialising in fine line, blackwork, ornamental, and illustrative tattoos.',
     image: siteUrl,
     url: siteUrl,
-    telephone: "+64 21 000 0000",
-    email: "hello@tidalinktattoo.co.nz",
+    telephone: '+64 21 000 0000',
+    email: 'hello@tidalinktattoo.co.nz',
     address: {
-      "@type": "PostalAddress",
-      streetAddress: "12 Marine Parade",
-      addressLocality: "Mount Maunganui",
-      addressRegion: "Bay of Plenty",
-      postalCode: "3116",
-      addressCountry: "NZ",
+      '@type': 'PostalAddress',
+      streetAddress: '12 Marine Parade',
+      addressLocality: 'Mount Maunganui',
+      addressRegion: 'Bay of Plenty',
+      postalCode: '3116',
+      addressCountry: 'NZ',
     },
-    areaServed: ["Mount Maunganui", "Tauranga", "Bay of Plenty"],
-    sameAs: ["https://www.instagram.com/tidalinktattoo"],
+    areaServed: ['Mount Maunganui', 'Tauranga', 'Bay of Plenty'],
+    sameAs: ['https://www.instagram.com/tidalinktattoo'],
   };
 
   return (
