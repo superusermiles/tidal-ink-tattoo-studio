@@ -14,7 +14,7 @@ const bodyFont = Inter({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://tidalinktattoo.co.nz";
+const siteUrl = "https://site-mbse8ft0k-stephenandrews-projects.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -69,25 +69,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Tidal Ink Tattoo Studio',
+    "@context": "https://schema.org",
+    "@type": "TattooParlor",
+    name: "Tidal Ink Tattoo Studio",
     description:
-      'Premium custom tattoo studio in Mount Maunganui specialising in fine line, blackwork, ornamental, and illustrative tattoos.',
-    image: siteUrl,
+      "Premium custom tattoo studio in Mount Maunganui specialising in fine line, blackwork, ornamental, and illustrative tattoos.",
     url: siteUrl,
-    telephone: '+64 21 000 0000',
-    email: 'hello@tidalinktattoo.co.nz',
+    telephone: "+64 21 000 0000",
+    email: "hello@tidalinktattoo.co.nz",
     address: {
-      '@type': 'PostalAddress',
-      streetAddress: '12 Marine Parade',
-      addressLocality: 'Mount Maunganui',
-      addressRegion: 'Bay of Plenty',
-      postalCode: '3116',
-      addressCountry: 'NZ',
+      "@type": "PostalAddress",
+      streetAddress: "12 Marine Parade",
+      addressLocality: "Mount Maunganui",
+      addressRegion: "Bay of Plenty",
+      postalCode: "3116",
+      addressCountry: "NZ",
     },
-    areaServed: ['Mount Maunganui', 'Tauranga', 'Bay of Plenty'],
-    sameAs: ['https://www.instagram.com/tidalinktattoo'],
+    areaServed: ["Mount Maunganui", "Tauranga", "Bay of Plenty"],
+    sameAs: ["https://www.instagram.com/tidalinktattoo"],
   };
 
   return (
@@ -97,7 +96,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <div className="site-shell">
-          <header className="border-b border-white/10 bg-[rgba(10,10,11,0.92)] backdrop-blur supports-[backdrop-filter]:bg-[rgba(10,10,11,0.75)]">
+          <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(10,10,11,0.92)] backdrop-blur supports-[backdrop-filter]:bg-[rgba(10,10,11,0.75)]">
             <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-8">
               <Link href="/" className="brand-mark" aria-label="Tidal Ink Tattoo Studio home">
                 <span className="block text-xs font-medium uppercase tracking-[0.45em] text-[--color-accent]">

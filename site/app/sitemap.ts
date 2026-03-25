@@ -2,8 +2,9 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
+const baseUrl = "https://site-mbse8ft0k-stephenandrews-projects.vercel.app";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://tidalinktattoo.co.nz";
   const routes = ["", "/artists", "/gallery", "/booking", "/contact"];
 
   return routes.map((route) => ({
