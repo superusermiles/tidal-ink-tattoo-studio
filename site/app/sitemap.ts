@@ -1,38 +1,39 @@
 import type { MetadataRoute } from "next";
 
+import { siteUrl } from "./layout";
+
 export const dynamic = "force-static";
 
-const baseUrl = "https://site-mbse8ft0k-stephenandrews-projects.vercel.app";
 const lastModified = new Date("2026-03-25");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${baseUrl}/`,
+      url: `${siteUrl}/`,
       lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/artists/`,
+      url: `${siteUrl}/artists/`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/gallery/`,
+      url: `${siteUrl}/gallery/`,
       lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/booking/`,
+      url: `${siteUrl}/booking/`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact/`,
+      url: `${siteUrl}/contact/`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,

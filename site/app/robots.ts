@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 
-export const dynamic = "force-static";
+import { siteUrl } from "./layout";
 
-const siteUrl = "https://site-mbse8ft0k-stephenandrews-projects.vercel.app";
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
