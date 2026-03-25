@@ -10,10 +10,10 @@
 - [x] No placeholder text
 
 ## Issues Found
-- Live deployment is not publicly accessible. The root URL and all key routes return `401` instead of `200`: `/`, `/artists/`, `/gallery/`, `/booking/`, `/contact/`, `/robots.txt`, `/sitemap.xml`.
-- Because the deployment is returning `401`, page rendering and live route verification cannot be completed for the required pages.
-- Review workflow dependency missing: `docs/studio-conventions.md` was not present in the accessible workspace path, so conventions could not be reviewed.
-- Repo structure differs from expected path. App files are located under `site/app/` rather than `<repo>/app/`. Verified files: `site/app/layout.tsx`, `site/app/page.tsx`, `site/app/robots.ts`, `site/app/sitemap.ts`.
+- Live deployment is not publicly accessible. `curl` to `https://site-mbse8ft0k-stephenandrews-projects.vercel.app` returned `401`, so the deployed site cannot be reviewed in a browser.
+- Because the live site is blocked, required live routes could not be verified: `/`, `/artists`, `/gallery`, `/booking`, `/contact`.
+- `site/app/layout.tsx`: navigation links reference all required routes and metadata/schema are present, but live rendering could not be confirmed due to the 401 response.
+- `site/app/page.tsx`: home page content aligns with the brief and design direction in source, but deployed output could not be validated due to the 401 response.
 
 ## Verdict
-Fail. The codebase shows the right content direction and includes baseline SEO elements in `site/app/layout.tsx`, `site/app/robots.ts`, and `site/app/sitemap.ts`, but the live deployment does not meet release quality because it is protected or misconfigured and returns `401` on all required routes. Rework must make the deployment publicly accessible and confirm every required page renders successfully before this can pass.
+FAIL. The source shows strong alignment with the brief and the SEO baseline is implemented in code, including metadata, robots, sitemap, and local business schema. However, the live URL returns 401 and is not publicly accessible, which blocks verification of the deployed experience and required page rendering. Public accessibility is required for final approval.
