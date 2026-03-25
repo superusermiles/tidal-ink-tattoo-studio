@@ -1,28 +1,21 @@
 # Review Report: Tidal Ink Tattoo Studio
 **Status: FAIL**
-**Live URL:** https://out-a5axxcj24-stephenandrews-projects.vercel.app
-**Repo Path:** /home/bob/workspace/tidal-ink-tattoo-studio
+**Live URL:** https://site-png0wjb4f-stephenandrews-projects.vercel.app
 
 ## Checklist
 - [ ] Site is live and accessible
 - [ ] Content matches brief
 - [ ] All pages exist and render
 - [ ] SEO baseline met (meta tags, schema)
-- [x] No placeholder text on the implemented homepage
+- [x] No placeholder text
 
-## Findings
-- The supplied live deployment is not publicly accessible. HTTP checks against `https://out-a5axxcj24-stephenandrews-projects.vercel.app` returned `401 Authentication Required`, so the deployment fails the public-access requirement and the rendered site cannot be visually rechecked in a public browser context.
-- Source SEO configuration is still incorrect. `site/app/site-config.ts:1` sets `siteUrl` to `https://site-mbse8ft0k-stephenandrews-projects.vercel.app`, which does not match the required final deployment URL `https://out-a5axxcj24-stephenandrews-projects.vercel.app` from the task brief.
-- Because `site/app/layout.tsx`, `site/app/robots.ts`, and `site/app/sitemap.ts` all derive canonical, metadata base, host, and sitemap values from `siteUrl`, the generated SEO URLs point at the wrong deployment domain.
-- `site/public/robots.txt:4` also hard-codes a stale sitemap URL: `https://tidal-ink-tattoo-studio.vercel.app/sitemap.xml`.
-- Required pages are missing in source. The app only builds `/`, `/robots.txt`, and `/sitemap.xml`. Required routes from the handoff are absent: `/artists/`, `/gallery/`, `/booking/`, and `/contact/`.
-- Navigation in `site/app/layout.tsx` links to `/artists/`, `/gallery/`, `/booking/`, and `/contact/`, but those route files do not exist.
-- `site/app/sitemap.ts` advertises `/artists/`, `/gallery/`, `/booking/`, and `/contact/` URLs even though the corresponding pages are not implemented.
-- The homepage content and styling direction are broadly aligned with the brief’s dark editorial aesthetic, gold accent palette, serif/sans pairing, semantic structure, and non-placeholder copy. However, route completeness and deployment accessibility block approval.
-
-## Build Verification
-- Local production build succeeds with only these static outputs: `/`, `/_not-found`, `/robots.txt`, and `/sitemap.xml`.
-- This confirms the missing required page routes are not present in the current app source.
+## Issues Found
+- Live deployment is not publicly accessible. HTTP checks against `https://site-png0wjb4f-stephenandrews-projects.vercel.app` returned `401` for `/`, `/artists/`, `/gallery/`, `/booking/`, `/contact/`, `/robots.txt`, and `/sitemap.xml`.
+- Required pages are missing in source. `tidal-ink-tattoo-studio/site/app/` contains `page.tsx`, `layout.tsx`, `robots.ts`, `sitemap.ts`, `site-config.ts`, `globals.css`, and no route folders or page files for `/artists/`, `/gallery/`, `/booking/`, or `/contact/`.
+- Navigation links in `tidal-ink-tattoo-studio/site/app/layout.tsx` point to `/artists/`, `/gallery/`, `/booking/`, and `/contact/`, but those routes are not implemented.
+- SEO base URL is incorrect in `tidal-ink-tattoo-studio/site/app/site-config.ts:1`. `siteUrl` is set to `https://site-mbse8ft0k-stephenandrews-projects.vercel.app`, which does not match the final live URL under review: `https://site-png0wjb4f-stephenandrews-projects.vercel.app`.
+- Canonical, metadata base, schema URL, robots host, robots sitemap, and sitemap entry URLs inherit the wrong domain via `tidal-ink-tattoo-studio/site/app/layout.tsx`, `tidal-ink-tattoo-studio/site/app/robots.ts`, and `tidal-ink-tattoo-studio/site/app/sitemap.ts`.
+- `tidal-ink-tattoo-studio/site/app/sitemap.ts` advertises `/artists/`, `/gallery/`, `/booking/`, and `/contact/` URLs even though the corresponding pages do not exist.
 
 ## Verdict
-FAIL. The project does not meet final review expectations. The provided live deployment is protected by Vercel authentication instead of being publicly accessible, SEO/canonical/robots/sitemap URLs do not point to the required final deployment URL, and four required pages from the brief are missing from the app source.
+FAIL. The site cannot pass final review because the provided deployment is behind authentication, required pages are missing from the app source, and SEO/canonical/robots/sitemap URLs do not match the final live URL.
