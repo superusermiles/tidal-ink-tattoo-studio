@@ -1,21 +1,22 @@
 # Review Report: Tidal Ink Tattoo Studio
 **Status: FAIL**
-**Live URL:** https://tidal-ink-tattoo-studio.vercel.app
+**Live URL:** https://site-png0wjb4f-stephenandrews-projects.vercel.app
+**Repo Path:** /home/bob/workspace/tidal-ink-tattoo-studio
 
 ## Checklist
 - [ ] Site is live and accessible
 - [ ] Content matches brief
 - [ ] All pages exist and render
-- [x] SEO baseline met (meta tags, schema)
+- [ ] SEO baseline met (meta tags, schema)
 - [x] No placeholder text
 
 ## Issues Found
-- Live deployment is not publicly accessible at the task URL. `curl` to `https://site-mbse8ft0k-stephenandrews-projects.vercel.app` returned `401`, so that deployment cannot be reviewed publicly.
-- The SEO-configured domain in `site/app/site-config.ts` is also not serving the built site. `curl` to `https://tidal-ink-tattoo-studio.vercel.app` returned `404`.
-- Required pages from the brief are still missing in source: `site/app/artists/page.tsx`, `site/app/gallery/page.tsx`, `site/app/booking/page.tsx`, and `site/app/contact/page.tsx` do not exist.
-- `site/app/layout.tsx`: navigation links and footer CTAs point to `/artists/`, `/gallery/`, `/booking/`, and `/contact/`, but corresponding route files are absent.
-- `site/app/page.tsx`: the home page content aligns with the brief and design direction, but it links to non-existent internal pages.
-- `site/app/sitemap.ts`: sitemap entries include `/artists/`, `/gallery/`, `/booking/`, and `/contact/` even though those routes are not implemented, so advertised URLs do not match the source route set.
+- Live deployment is not publicly accessible. `curl -I https://site-png0wjb4f-stephenandrews-projects.vercel.app` returned `HTTP 401`, so the site fails the public-access requirement.
+- `site/app/site-config.ts:1` sets `siteUrl` to `https://site-mbse8ft0k-stephenandrews-projects.vercel.app`, which does not match the exact deployment URL from task notes: `https://site-png0wjb4f-stephenandrews-projects.vercel.app`.
+- `site/app/layout.tsx:19-42`, `site/app/robots.ts:13-14`, and `site/app/sitemap.ts:28` all derive canonical, metadata base, host, and sitemap URLs from the mismatched `siteUrl`, so SEO URLs do not use the required deployment URL from task notes.
+- Required pages from the brief are missing in source: `site/app/artists/page.tsx`, `site/app/gallery/page.tsx`, `site/app/booking/page.tsx`, and `site/app/contact/page.tsx` do not exist.
+- `site/app/layout.tsx:59-64` and `site/app/layout.tsx:121-175` link to `/artists/`, `/gallery/`, `/booking/`, and `/contact/`, but those routes are not implemented.
+- `site/app/sitemap.ts:27-32` advertises `/artists/`, `/gallery/`, `/booking/`, and `/contact/` URLs even though the corresponding route files are absent.
 
 ## Verdict
-FAIL. The source includes a strong home page and baseline SEO work, but final review cannot pass because no public production URL is currently serving the site and the required Artists, Gallery, Booking, and Contact pages are still missing from `site/app`. Approval requires a publicly accessible deployment URL that returns 200 and working implementations for all required pages.
+FAIL. The project cannot pass final review because the supplied live deployment still returns 401 instead of being publicly accessible, the SEO/canonical/robots/sitemap configuration does not use the exact deployment URL from task notes, and the required Artists, Gallery, Booking, and Contact pages are missing from `site/app`. The homepage content is directionally aligned and contains no obvious placeholder text, but the deployment and route completeness issues block approval.
