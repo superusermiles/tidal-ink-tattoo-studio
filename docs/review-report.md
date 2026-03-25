@@ -1,7 +1,6 @@
 # Review Report: Tidal Ink Tattoo Studio
 **Status: FAIL**
 **Live URL:** https://site-mbse8ft0k-stephenandrews-projects.vercel.app
-**Repo Path:** /home/bob/workspace/tidal-ink-tattoo-studio
 
 ## Checklist
 - [ ] Site is live and accessible
@@ -11,9 +10,10 @@
 - [x] No placeholder text
 
 ## Issues Found
-- Live deployment is not publicly accessible. Visiting `https://site-mbse8ft0k-stephenandrews-projects.vercel.app/` returns `401 Authentication Required`, so the site fails the accessibility requirement.
-- Because the deployment is protected, required pages could not be verified as rendering on the live site: `/artists/`, `/gallery/`, `/booking/`, `/contact/`.
-- `site/public/robots.txt:4` points the sitemap to `https://tidalinktattoo.co.nz/sitemap.xml` instead of the provided deployment URL.
+- Live deployment is not publicly accessible. The root URL and all key routes return `401` instead of `200`: `/`, `/artists/`, `/gallery/`, `/booking/`, `/contact/`, `/robots.txt`, `/sitemap.xml`.
+- Because the deployment is returning `401`, page rendering and live route verification cannot be completed for the required pages.
+- Review workflow dependency missing: `docs/studio-conventions.md` was not present in the accessible workspace path, so conventions could not be reviewed.
+- Repo structure differs from expected path. App files are located under `site/app/` rather than `<repo>/app/`. Verified files: `site/app/layout.tsx`, `site/app/page.tsx`, `site/app/robots.ts`, `site/app/sitemap.ts`.
 
 ## Verdict
-FAIL. The repo content aligns with the brief on the available home page output and includes baseline metadata, schema, and sitemap output, but the actual deployment under the provided live URL is blocked by Vercel authentication and returns 401 on all checked routes. Since the site is not publicly accessible and live page rendering could not be confirmed, it does not pass final review.
+Fail. The codebase shows the right content direction and includes baseline SEO elements in `site/app/layout.tsx`, `site/app/robots.ts`, and `site/app/sitemap.ts`, but the live deployment does not meet release quality because it is protected or misconfigured and returns `401` on all required routes. Rework must make the deployment publicly accessible and confirm every required page renders successfully before this can pass.
