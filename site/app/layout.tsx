@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import { siteDescription, siteName, siteUrl } from "./site-config";
 
 const headingFont = Cormorant_Garamond({
   variable: "--font-heading",
@@ -14,16 +15,13 @@ const bodyFont = Inter({
   subsets: ["latin"],
 });
 
-export const siteUrl = "https://tidal-ink-tattoo-studio.vercel.app";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
-    template: "%s | Tidal Ink Tattoo Studio",
+    default: `${siteName} | Custom Tattoo Studio Mount Maunganui`,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Premium custom tattoo studio in Mount Maunganui for fine line, blackwork, illustrative, and bespoke tattoo consultations across Tauranga and Bay of Plenty.",
+  description: siteDescription,
   keywords: [
     "tattoo studio Mount Maunganui",
     "custom tattoo studio Mount Maunganui",
@@ -35,20 +33,20 @@ export const metadata: Metadata = {
     "illustrative tattoo Bay of Plenty",
   ],
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
   },
   openGraph: {
-    title: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
+    title: `${siteName} | Custom Tattoo Studio Mount Maunganui`,
     description:
       "Premium custom tattoo studio in Mount Maunganui for fine line, blackwork, ornamental, and illustrative tattoos with consultation-led bookings.",
     url: siteUrl,
-    siteName: "Tidal Ink Tattoo Studio",
+    siteName,
     locale: "en_NZ",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
+    title: `${siteName} | Custom Tattoo Studio Mount Maunganui`,
     description:
       "Premium custom tattoo studio in Mount Maunganui for fine line, blackwork, ornamental, and illustrative tattoos.",
   },
@@ -74,7 +72,7 @@ export default function RootLayout({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "TattooParlor",
-    name: "Tidal Ink Tattoo Studio",
+    name: siteName,
     description:
       "Premium custom tattoo studio in Mount Maunganui specialising in fine line, blackwork, ornamental, and illustrative tattoos.",
     url: siteUrl,
