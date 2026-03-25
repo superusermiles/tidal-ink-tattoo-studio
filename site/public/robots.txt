@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tidalinktattoo.co.nz/sitemap.xml
