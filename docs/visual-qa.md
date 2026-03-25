@@ -1,71 +1,58 @@
 # Tidal Ink Tattoo Studio Visual QA
 
 ## QA Recheck Status
-Blocked. Live visual QA rerun could not be completed in this environment because the required screenshot workflow failed to launch Chromium. A code review against the approved brief, design spec, and current implementation was completed instead.
+Blocked. Public deployment access is now available at the latest Vercel URL, but the required screenshot workflow still cannot run in this environment because Playwright Chromium exits with `SIGSYS` before capture. A code review against the approved brief, design spec, development handoff, and current implementation was completed instead.
 
 ## Inputs Used
 - Repo path: `/home/bob/workspace/tidal-ink-tattoo-studio`
-- Live URL: `https://site-mbse8ft0k-stephenandrews-projects.vercel.app`
+- Live URL: `https://site-png0wjb4f-stephenandrews-projects.vercel.app`
 - Design spec reviewed: `docs/design-spec.md`
 - Brief reviewed: `docs/brief.md`
 - Development requirements reviewed: `docs/development-handoff.md`
 
 ## Screenshot Attempt
-- Attempted required capture command: `node /home/bob/scripts/screenshot.mjs https://site-mbse8ft0k-stephenandrews-projects.vercel.app /home/bob/workspace/tidal-ink-tattoo-studio/files/screenshots/`
+- Attempted required capture command: `node /home/bob/scripts/screenshot.mjs https://site-png0wjb4f-stephenandrews-projects.vercel.app /home/bob/workspace/tidal-ink-tattoo-studio/files/screenshots/`
 - Playwright Chromium launch failed with `signal=SIGSYS` before any page screenshots were captured.
-- No visual evidence from the live deployment could be produced in this task run.
+- No live visual evidence from the current deployment could be produced in this task run.
 
 ## Implementation Review Findings
 ### Passes
-- Brand palette aligns closely with spec: near-black, charcoal, slate, soft ivory, muted grey, and aged gold are implemented in `app/globals.css`.
-- Typography direction aligns with spec: serif display heading font and clean sans-serif body font are implemented in `app/layout.tsx`.
-- Header navigation includes Home, Artists, Gallery, Booking, and Contact, with a gold-outlined booking CTA in desktop navigation.
-- Home page includes the required premium dark hero, artist preview section, gallery preview, booking process section, and final CTA block.
-- Footer includes studio name, location details, navigation repeat, booking CTA, and copyright line.
-- Accessibility basics are present: skip link, semantic header/main/footer, and focus-visible styles.
-- Robots and sitemap files exist.
-- Local business schema is included in the layout.
+- Colour palette aligns with the design spec. `app/globals.css` uses near-black `#0A0A0B`, deep charcoal `#121317`, slate `#1B1E24`, soft ivory `#F3EFE7`, muted grey `#B8B2A7`, and aged gold `#C8A96B`.
+- Typography direction aligns with the spec. `app/layout.tsx` uses a refined serif heading font and clean sans-serif body font.
+- Header navigation matches the required IA with Home, Artists, Gallery, Booking, and Contact links plus a gold-outlined booking CTA.
+- Hero CTA pair now matches the approved design intent: primary booking CTA and secondary `View artists` CTA.
+- Home page now includes all five required booking steps in order.
+- Artist cards now include name, specialty, short bio, experience indicator, and a per-card booking CTA.
+- Gallery preview now uses category-led cards instead of the previous generic repeated title pattern.
+- Accessibility basics remain present: skip link, semantic header/main/footer, and focus-visible treatment.
+- Local business schema, robots, and sitemap are present.
 
 ### Issues Found
-1. **Major — Required pages are missing from the app router.**
-   - The spec and handoff require `/artists/`, `/gallery/`, `/booking/`, and `/contact/`.
-   - The current `site/app` tree only shows `page.tsx`, `layout.tsx`, `globals.css`, `robots.ts`, and `sitemap.ts`.
-   - This means the main navigation links point to pages that are not implemented in the provided code snapshot.
+1. **Major — Required interior pages are still not evidenced in the provided app router snapshot.**
+   - The brief and handoff require `/artists/`, `/gallery/`, `/booking/`, and `/contact/`.
+   - The provided `site/app` files reviewed in this pass still only evidence `page.tsx`, `layout.tsx`, `globals.css`, `robots.ts`, and `sitemap.ts`.
+   - Navigation structure is correct, but the route files themselves are not evidenced in the reviewed implementation snapshot.
 
-2. **Major — Home page booking process is incomplete versus the approved design.**
-   - The design spec requires five steps: Share your idea, Consultation and artist match, Design approval and deposit, Session day, Aftercare.
-   - The current home page only renders three booking steps.
+2. **Major — Gallery category naming is still partially off-spec.**
+   - The design handoff requires `Fine Line`, `Blackwork`, `Ornamental`, and `Custom Pieces`.
+   - The current home preview uses `Fine Line`, `Blackwork`, `Illustrative`, and `Custom Ornamental`.
+   - This is stronger than the earlier implementation, but it still does not exactly match the approved gallery taxonomy.
 
-3. **Major — Secondary hero CTA does not match the approved design.**
-   - Spec requires secondary CTA: `View Artists`.
-   - Current implementation uses `View tattoo gallery` linking to `/gallery/`.
+3. **Major — Metadata base URL still points to the previous blocked Vercel deployment.**
+   - `app/layout.tsx`, `app/robots.ts`, and `app/sitemap.ts` still use `https://site-mbse8ft0k-stephenandrews-projects.vercel.app`.
+   - The current public review URL is `https://site-png0wjb4f-stephenandrews-projects.vercel.app`.
+   - Canonical, Open Graph, robots, sitemap, and schema URL references should be updated to the active deployment or final production domain.
 
-4. **Major — Artist cards are incomplete.**
-   - Spec requires artist name, specialty, short bio, experience indicator, and CTA to book.
-   - Current cards include name, specialty, and description only. No experience indicator. No per-card booking CTA.
-
-5. **Major — Gallery cards are incomplete.**
-   - Spec requires category title and descriptive caption for featured work categories: Fine Line, Blackwork, Ornamental, Custom Pieces.
-   - Current gallery preview cards repeat the generic title `Signature piece` rather than surfacing the required category titles.
-
-6. **Major — Contact page requirements are not evidenced in current implementation.**
-   - The brief and spec require address, hours, email, Instagram placeholder or link, travel/location details, and enquiry prompt on a dedicated contact page.
-   - No dedicated contact route file is present in the provided app structure.
-
-7. **Major — Booking page policy requirements are not evidenced in current implementation.**
-   - The handoff requires deposits, 48-hour rescheduling notice, age requirement, preparation guidance, and aftercare guidance.
-   - No dedicated booking route file is present in the provided app structure.
-
-8. **Major — Metadata base URLs use a production domain that does not match the supplied live deployment URL.**
-   - `app/layout.tsx`, `app/robots.ts`, and `app/sitemap.ts` all reference `https://tidalinktattoo.co.nz`.
-   - Current live review URL is the Vercel deployment URL. This mismatch can create incorrect canonical, Open Graph, robots, and sitemap references until the custom domain is actually connected and serving.
+4. **Major — Live visual QA remains incomplete because screenshot capture is blocked by environment tooling.**
+   - The required screenshot command fails before browser launch completes.
+   - Layout fidelity, responsive behaviour, spacing, and rendered route completeness cannot be visually signed off from this environment.
 
 ## Overall Assessment
-The visual direction and foundational styling are strong and mostly on-brief. The implementation appears polished at the home page level. But the build does not yet satisfy the approved scope because required interior pages are not evidenced, several component requirements are incomplete, and live screenshot-based QA could not be performed.
+The implementation is materially closer to the approved design than the earlier reviewed state. Key home-page issues previously flagged are now resolved in code: the correct secondary hero CTA is in place, the booking process includes five steps, artist cards are complete, and gallery cards are more aligned with the brief. However, the build still cannot be fully approved because required interior routes are not evidenced in the reviewed app snapshot, gallery taxonomy is not an exact match to spec, metadata still points at the old deployment URL, and screenshot-based live QA remains blocked by the environment.
 
 ## Required Next Step
-1. Implement the missing Artists, Gallery, Booking, and Contact pages.
-2. Complete missing spec details on the home page: five booking steps, correct secondary hero CTA, artist card experience indicators and booking CTAs, and proper gallery category titles.
-3. Ensure metadata, robots, and sitemap use the actual live production domain in service.
+1. Ensure the required `/artists/`, `/gallery/`, `/booking/`, and `/contact/` route files are present in `site/app` and deployed.
+2. Align gallery category naming exactly to the approved set: `Fine Line`, `Blackwork`, `Ornamental`, and `Custom Pieces`.
+3. Update metadata, schema, robots, and sitemap URLs to the active production domain in service.
 4. Redeploy.
-5. Rerun visual QA with a screenshot-capable environment.
+5. Rerun visual QA in a screenshot-capable environment.
