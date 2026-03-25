@@ -14,7 +14,7 @@ const bodyFont = Inter({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://site-mbse8ft0k-stephenandrews-projects.vercel.app";
+export const siteUrl = "https://tidal-ink-tattoo-studio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Tidal Ink Tattoo Studio",
   },
   description:
-    "Custom tattoo studio in Mount Maunganui offering fine line, blackwork, illustrative, and bespoke tattoo consultations for Tauranga and Bay of Plenty clients.",
+    "Premium custom tattoo studio in Mount Maunganui for fine line, blackwork, illustrative, and bespoke tattoo consultations across Tauranga and Bay of Plenty.",
   keywords: [
     "tattoo studio Mount Maunganui",
     "custom tattoo studio Mount Maunganui",
@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     "blackwork tattoo Tauranga",
     "illustrative tattoo Bay of Plenty",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Tidal Ink Tattoo Studio | Custom Tattoo Studio Mount Maunganui",
     description:

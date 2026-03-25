@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tidalinktattoo.co.nz/sitemap.xml
+Sitemap: https://site-mbse8ft0k-stephenandrews-projects.vercel.app/sitemap.xml
